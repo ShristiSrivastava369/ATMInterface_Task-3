@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Machine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("atm.jpg");
+            background-repeat: no-repeat;
+            background-size: auto;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row; 
+            justify-content: flex-end; 
+            align-items: center;
+            height: 100vh;
+        }
+
+        .atm-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: medium;
+            max-width: 400px;
+            width: 90%;
+            margin-right: 90px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 50px;
+            margin-bottom: 50px;
+            position: absolute; 
+            top: 20px; 
+            right: 130px; 
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 2px;
+        }
+        
+        .button-container {
+            display: flex;
+            align-items: center; 
+            gap: 5px; 
+            margin-top: 20px;
+            margin-left: 70px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>ATM Machine</h2> 
+    <div class="atm-card">
+		<h3>Create Account</h3>
+        <div th:if="${successMessage}" class="alert alert-success" style="background-color: rgb(152, 213, 115);">
+            <strong>Success!</strong> <span th:text="${successMessage}"></span>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger" style="background-color: rgb(255, 94, 94);">
+        <strong>Error!</strong> <span th:text="${errorMessage}"></span>
+        </div> <br><br>
+
+        <form action="/Create" method="post">
+            <label for="name">Account Number:</label>
+            <input type="number" id="accountNumber" name="accountNumber" required><br><br>
+            
+            <label for="name">Bank Balance:</label>
+            <input type="number" id="balance" name="balance" required><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+        
+        <div class="button-container">
+            <a href="/VisitDashboard" class="button">Go To Dashboard</a>
+            <a href="/instructions" class="button">Instructions</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${user.accountNumber}">ATM Dashboard</title>
+    <style>
+        body {
+            background-color: rgb(192, 192, 192);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .dashboard-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .delbutton{
+			display: inline-block;
+            padding: 15px 30px;
+            background-color: rgb(255, 0, 0);
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-left: 1000px;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+		}
+		
+		.delbutton:hover {
+            background-color: rgb(157, 0, 0);
+        }
+
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+		<a th:href="@{/delete/{id}(id=${user.id})}" class="delbutton">Delete Account</a>
+        <h1 class="dashboard-title" th:text="'Welcome, Account Number: ' + ${user.accountNumber}"></h1>
+        <a th:href="@{/deposit}" class="button">Deposit</a>
+        <a th:href="@{/withdraw/{id}(id=${user.id})}" class="button">Withdraw</a>
+        <a th:href="@{/Balance/{id}(id=${user.id})}" class="button">Check Balance</a>
+    </div>
+</body>
+</html>
